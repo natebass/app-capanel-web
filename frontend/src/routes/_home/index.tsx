@@ -1,11 +1,4 @@
-import {
-	Avatar,
-	Button,
-	ButtonGroup,
-	Card,
-	For,
-	Stack,
-} from "@chakra-ui/react";
+import { Avatar, Button, Card, For, Stack } from "@chakra-ui/react";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_home/")({
