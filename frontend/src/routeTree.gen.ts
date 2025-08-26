@@ -15,9 +15,9 @@ import { Route as RecoverPasswordRouteImport } from './routes/recover-password'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as HomeRouteImport } from './routes/_home'
 import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as HomeIndexRouteImport } from './routes/_home/index'
 import { Route as HomeDocsRouteImport } from './routes/_home/docs'
-import { Route as HomeDashboardRouteImport } from './routes/_home/dashboard'
 import { Route as HomeApiSyncRouteImport } from './routes/_home/api-sync'
 import { Route as HomeDemoRouteImport } from './routes/_home/_demo'
 import { Route as AuthUserRouteImport } from './routes/_auth/user'
@@ -57,6 +57,11 @@ const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HomeIndexRoute = HomeIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -65,11 +70,6 @@ const HomeIndexRoute = HomeIndexRouteImport.update({
 const HomeDocsRoute = HomeDocsRouteImport.update({
   id: '/docs',
   path: '/docs',
-  getParentRoute: () => HomeRoute,
-} as any)
-const HomeDashboardRoute = HomeDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
   getParentRoute: () => HomeRoute,
 } as any)
 const HomeApiSyncRoute = HomeApiSyncRouteImport.update({
@@ -133,9 +133,9 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AuthSettingsRoute
   '/user': typeof AuthUserRoute
   '/api-sync': typeof HomeApiSyncRoute
-  '/dashboard': typeof HomeDashboardRoute
   '/docs': typeof HomeDocsRoute
   '/': typeof HomeIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/demo/table': typeof HomeDemoDemoTableRoute
   '/demo/tanstack-query': typeof HomeDemoDemoTanstackQueryRoute
   '/demo/form/address': typeof HomeDemoDemoFormAddressRoute
@@ -151,9 +151,9 @@ export interface FileRoutesByTo {
   '/settings': typeof AuthSettingsRoute
   '/user': typeof AuthUserRoute
   '/api-sync': typeof HomeApiSyncRoute
-  '/dashboard': typeof HomeDashboardRoute
   '/docs': typeof HomeDocsRoute
   '/': typeof HomeIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/demo/table': typeof HomeDemoDemoTableRoute
   '/demo/tanstack-query': typeof HomeDemoDemoTanstackQueryRoute
   '/demo/form/address': typeof HomeDemoDemoFormAddressRoute
@@ -173,9 +173,9 @@ export interface FileRoutesById {
   '/_auth/user': typeof AuthUserRoute
   '/_home/_demo': typeof HomeDemoRouteWithChildren
   '/_home/api-sync': typeof HomeApiSyncRoute
-  '/_home/dashboard': typeof HomeDashboardRoute
   '/_home/docs': typeof HomeDocsRoute
   '/_home/': typeof HomeIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/_home/_demo/demo/table': typeof HomeDemoDemoTableRoute
   '/_home/_demo/demo/tanstack-query': typeof HomeDemoDemoTanstackQueryRoute
   '/_home/_demo/demo/form/address': typeof HomeDemoDemoFormAddressRoute
@@ -193,9 +193,9 @@ export interface FileRouteTypes {
     | '/settings'
     | '/user'
     | '/api-sync'
-    | '/dashboard'
     | '/docs'
     | '/'
+    | '/dashboard'
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/demo/form/address'
@@ -211,9 +211,9 @@ export interface FileRouteTypes {
     | '/settings'
     | '/user'
     | '/api-sync'
-    | '/dashboard'
     | '/docs'
     | '/'
+    | '/dashboard'
     | '/demo/table'
     | '/demo/tanstack-query'
     | '/demo/form/address'
@@ -232,9 +232,9 @@ export interface FileRouteTypes {
     | '/_auth/user'
     | '/_home/_demo'
     | '/_home/api-sync'
-    | '/_home/dashboard'
     | '/_home/docs'
     | '/_home/'
+    | '/dashboard/'
     | '/_home/_demo/demo/table'
     | '/_home/_demo/demo/tanstack-query'
     | '/_home/_demo/demo/form/address'
@@ -248,6 +248,7 @@ export interface RootRouteChildren {
   RecoverPasswordRoute: typeof RecoverPasswordRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SignupRoute: typeof SignupRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -294,6 +295,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_home/': {
       id: '/_home/'
       path: '/'
@@ -306,13 +314,6 @@ declare module '@tanstack/react-router' {
       path: '/docs'
       fullPath: '/docs'
       preLoaderRoute: typeof HomeDocsRouteImport
-      parentRoute: typeof HomeRoute
-    }
-    '/_home/dashboard': {
-      id: '/_home/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof HomeDashboardRouteImport
       parentRoute: typeof HomeRoute
     }
     '/_home/api-sync': {
@@ -425,7 +426,6 @@ const HomeDemoRouteWithChildren = HomeDemoRoute._addFileChildren(
 interface HomeRouteChildren {
   HomeDemoRoute: typeof HomeDemoRouteWithChildren
   HomeApiSyncRoute: typeof HomeApiSyncRoute
-  HomeDashboardRoute: typeof HomeDashboardRoute
   HomeDocsRoute: typeof HomeDocsRoute
   HomeIndexRoute: typeof HomeIndexRoute
 }
@@ -433,7 +433,6 @@ interface HomeRouteChildren {
 const HomeRouteChildren: HomeRouteChildren = {
   HomeDemoRoute: HomeDemoRouteWithChildren,
   HomeApiSyncRoute: HomeApiSyncRoute,
-  HomeDashboardRoute: HomeDashboardRoute,
   HomeDocsRoute: HomeDocsRoute,
   HomeIndexRoute: HomeIndexRoute,
 }
@@ -447,6 +446,7 @@ const rootRouteChildren: RootRouteChildren = {
   RecoverPasswordRoute: RecoverPasswordRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SignupRoute: SignupRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

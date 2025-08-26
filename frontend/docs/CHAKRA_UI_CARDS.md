@@ -69,7 +69,7 @@ src/
 │       └── card.tsx          # Card component implementation
 └── routes/
     └── _home/
-        └── dashboard.tsx     # Dashboard with card examples
+        └── index.tsx     # Dashboard with card examples
 ```
 
 ## Variants
@@ -312,7 +312,7 @@ function TabbedUserMetricsCard() {
 
 ## Dashboard Implementation
 
-The dashboard (`src/routes/_home/dashboard.tsx`) showcases various card patterns:
+The dashboard (`src/routes/_home/index.tsx`) showcases various card patterns:
 
 ### 1. Statistics Grid
 
@@ -687,7 +687,7 @@ When updating the Card component:
 
 For more examples, check:
 
-- Dashboard implementation: `src/routes/_home/dashboard.tsx`
+- Dashboard implementation: `src/routes/_home/index.tsx`
 - Component source: `src/components/ui/card.tsx`
 - Additional patterns in the component library
 
