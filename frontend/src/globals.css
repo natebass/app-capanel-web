@@ -29,6 +29,7 @@ code {
 	--font-source-serif-4: "Source Serif 4", serif;
 	--font-roboto: "Roboto", sans-serif;
 	--font-urbanist: "Urbanist", sans-serif;
+    --breakpoint-navbar: 1110px;
 	--color-primary-50: #ebf5fe;
 	--color-primary-100: #e1effd;
 	--color-primary-200: #c3defb;
