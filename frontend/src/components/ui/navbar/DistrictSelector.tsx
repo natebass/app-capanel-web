@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-// import { useAuth } from "../components/hooks/use-auth.tsx";
+// import { useAuth } from "../components/hooks/use-auth";
 
 export default function DistrictSelector() {
 	const [open, setOpen] = useState(false);

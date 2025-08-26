@@ -12,7 +12,7 @@ import {
 	PaginationNextTrigger,
 	PaginationPrevTrigger,
 	PaginationRoot,
-} from "../../components/ui/pagination.tsx";
+} from "../../components/ui/pagination";
 
 const usersSearchSchema = z.object({
 	page: z.number().catch(1),

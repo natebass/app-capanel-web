@@ -1,6 +1,6 @@
 import { Card } from "@chakra-ui/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import SearchHomepageForm from "../../components/ui/form/home-search-form.tsx";
+import SearchHomepageForm from "../../components/ui/form/home-search-form";
 
 export const Route = createFileRoute("/_home/api-sync")({
 	component: RouteComponent,

@@ -2,10 +2,10 @@ import { Link } from "@tanstack/react-router";
 import "./NavbarD52.css";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import useAuth from "../../../hooks/useAuth.ts";
-import MobileButton from "./MobileButton.tsx";
-import SearchBar from "./SearchBar.tsx";
+import MobileButton from "./MobileButton";
+import SearchBar from "./SearchBar";
 import SettingsButton from "./SettingsButton";
-import UserAvatar from "./UserAvatar.tsx";
+import UserAvatar from "./UserAvatar";
 
 export default function NavbarD52({ shadow = false }: { shadow?: boolean }) {
 	const { user: currentUser } = useAuth();

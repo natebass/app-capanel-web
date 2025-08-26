@@ -10,7 +10,7 @@ import ReactDOM from "react-dom/client";
 import { ApiError, OpenAPI } from "./client";
 import { routeTree } from "./routeTree.gen";
 import "./globals.css";
-import { CustomProvider } from "./components/ui/provider.tsx";
+import { CustomProvider } from "./components/ui/provider";
 import reportWebVitals from "./reportWebVitals.ts";
 
 OpenAPI.BASE = import.meta.env.VITE_API_URL;
