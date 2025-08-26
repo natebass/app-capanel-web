@@ -1,8 +1,8 @@
 import { useForm } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { useDebounce } from "../../hooks/useDebounce";
-import { ComboBox } from "../ui/input/ComboBox";
+import { useDebounce } from "../../../hooks/useDebounce";
+import { ComboBox } from "../input/ComboBox";
 
 interface SchoolSummary {
 	id: string;
@@ -40,7 +40,7 @@ function useSearchHomepageForm(opts?: {
 		results: SchoolSummary[],
 	) => void;
 }) {
-	const form = useForm({
+	return useForm({
 		defaultValues: {
 			schoolOrDistrict: "",
 			location: "",
@@ -56,7 +56,6 @@ function useSearchHomepageForm(opts?: {
 			}
 		},
 	});
-	return form;
 }
 
 export default function SearchHomepageForm() {

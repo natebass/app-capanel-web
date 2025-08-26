@@ -1,4 +1,4 @@
-import { useFormContext } from "../../form/demo/demo.form-context.ts";
+import { useFormContext } from "../form/demo/demo.form-context.ts";
 
 export function SubscribeButton({ label }: { label: string }) {
 	const form = useFormContext();

@@ -36,9 +36,9 @@ function HomePage() {
 				About the data
 			</h2>
 			<p className="mt-8 text-center max-w-lg font-urbanist text-lg">
-				We use the standards of California's Accountability System. The
-				data is sourced from reports published by the California Department of
-				Education https://www.cde.ca.gov/ds/.
+				We use the standards of California's Accountability System. The data is
+				sourced from reports published by the California Department of Education
+				https://www.cde.ca.gov/ds/.
 			</p>
 			<h2 className="mt-24 text-center text-3xl font-bold text-element-text-regular font-urbanist">
 				Features

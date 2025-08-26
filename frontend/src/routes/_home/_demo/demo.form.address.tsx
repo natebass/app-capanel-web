@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useAppForm } from "../../../components/form/demo/demo.form.ts";
+import { useAppForm } from "../../../components/ui/form/demo/demo.form.ts";
 
 export const Route = createFileRoute("/_home/_demo/demo/form/address")({
 	component: AddressForm,
