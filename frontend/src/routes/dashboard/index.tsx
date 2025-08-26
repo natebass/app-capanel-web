@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import NavbarD52 from "../../components/ui/navbar/NavbarD52.tsx";
 import DashboardD09 from "../../components/Dashboard/DashboardD09.tsx";
+import NavbarD52 from "../../components/ui/navbar/NavbarD52.tsx";
 
 export const Route = createFileRoute("/dashboard/")({
 	component: DashboardPage,
