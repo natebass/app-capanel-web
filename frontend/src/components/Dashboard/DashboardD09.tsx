@@ -7,7 +7,6 @@ import {
 	Heading,
 	HStack,
 	Icon,
-	Tabs,
 	Text,
 	VStack,
 } from "@chakra-ui/react";
@@ -18,7 +17,6 @@ import {
 	FiDollarSign,
 	FiSettings,
 	FiShoppingCart,
-	FiTrendingUp,
 	FiUser,
 } from "react-icons/fi";
 import { Card, CardBody, CardFooter, CardHeader } from "../ui/card";
