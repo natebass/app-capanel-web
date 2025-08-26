@@ -18,17 +18,20 @@ Comprehensive guide covering:
 ### Key Features Covered
 
 ✅ **Three Card Variants**
+
 - `outline` - Clean border design (default)
-- `filled` - Solid background emphasis  
+- `filled` - Solid background emphasis
 - `elevated` - Subtle shadow for depth
 
 ✅ **Component Structure**
+
 - `Card` - Root container
 - `CardHeader` - Title and actions
 - `CardBody` - Main content area
 - `CardFooter` - Secondary actions
 
 ✅ **Dashboard Examples**
+
 - Statistics grid with KPI metrics
 - Real-time activity feed
 - Quick actions panel
@@ -37,6 +40,7 @@ Comprehensive guide covering:
 - Storage usage visualization
 
 ✅ **Production Ready**
+
 - TypeScript support
 - Responsive design
 - Accessibility features
@@ -67,6 +71,7 @@ function ExampleCard() {
 ## Live Examples
 
 View the implemented dashboard with all card examples at:
+
 - Route: `/_home/dashboard`
 - File: `src/routes/_home/dashboard.tsx`
 

@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import "./NavbarD52.css";
 import useAuth from "../../../hooks/useAuth.ts";
+import MobileButton from "./MobileButton.tsx";
 import SearchBar from "./SearchBar.tsx";
 import SettingsButton from "./SettingsButton";
 import UserAvatar from "./UserAvatar.tsx";
-import MobileButton from "./MobileButton.tsx";
 
 export default function NavbarD52() {
 	const { user: currentUser } = useAuth();
@@ -26,36 +26,38 @@ export default function NavbarD52() {
 				</div>
 				<div className="grow h-full flex items-center justify-end">
 					<SearchBar className="me-8" />
-          <div className="hidden navbar:flex h-full items-center">
-            <Link
-              to="/"
-              className="navbar2-link"
-              activeProps={{
-                className: "navbar2-link--selected",
-              }}
-            >
-              Home
-            </Link>
-            <Link
-              to="/dashboard"
-              className="navbar2-link"
-              activeProps={{
-                className: "navbar2-link--selected",
-              }}
-            >
-              Dashboard
-            </Link>
-            <div className="px-3">
-              <SettingsButton/>
-            </div>
-            {currentUser && (
-              <Link to="/user">
-                <UserAvatar/>
-              </Link>
-            )}
-          </div>
-        </div>
-        <div className="navbar:hidden"><MobileButton/></div>
+					<div className="hidden navbar:flex h-full items-center">
+						<Link
+							to="/"
+							className="navbar2-link"
+							activeProps={{
+								className: "navbar2-link--selected",
+							}}
+						>
+							Home
+						</Link>
+						<Link
+							to="/dashboard"
+							className="navbar2-link"
+							activeProps={{
+								className: "navbar2-link--selected",
+							}}
+						>
+							Dashboard
+						</Link>
+						<div className="px-3">
+							<SettingsButton />
+						</div>
+						{currentUser && (
+							<Link to="/user">
+								<UserAvatar />
+							</Link>
+						)}
+					</div>
+				</div>
+				<div className="navbar:hidden">
+					<MobileButton />
+				</div>
 			</nav>
 		</div>
 	);

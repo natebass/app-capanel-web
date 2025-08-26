@@ -1,5 +1,5 @@
 import { defineConfig } from '@pandacss/dev';
-import  chakraPreset  from '@chakra-ui/panda-preset';
+import chakraPreset from '@chakra-ui/panda-preset';
 
 export default defineConfig({
   //... other config

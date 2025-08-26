@@ -29,7 +29,7 @@ code {
 	--font-source-serif-4: "Source Serif 4", serif;
 	--font-roboto: "Roboto", sans-serif;
 	--font-urbanist: "Urbanist", sans-serif;
-    --breakpoint-navbar: 1110px;
+	--breakpoint-navbar: 1110px;
 	--color-primary-50: #ebf5fe;
 	--color-primary-100: #e1effd;
 	--color-primary-200: #c3defb;
@@ -58,29 +58,29 @@ code {
 	--color-echart-text-primary: #081642;
 
 	/* --color-element-primary: #436a27;
-	--color-element-primary-tint: #568832;
-	--color-element-text-primary: #303133;
-	--color-element-text-regular: #606266;
-	--color-element-cool1: #013148;
-	--color-element-selected: #fd0013;
-	--color-element-hover-bg: #ecf0e9; */
+    --color-element-primary-tint: #568832;
+    --color-element-text-primary: #303133;
+    --color-element-text-regular: #606266;
+    --color-element-cool1: #013148;
+    --color-element-selected: #fd0013;
+    --color-element-hover-bg: #ecf0e9; */
 }
 
 @layer components {
 	.button-primary {
 		@apply flex-shrink
-           rounded-full
-           bg-[#f72c5b]
-           hover:bg-[#AB1F3F]
-           px-8
-           py-3
-           text-white
-           shadow-sm
-           cursor-pointer
-           focus-visible:outline-2
-           focus-visible:outline-offset-2
-           focus-visible:outline-red-500
-           disabled:opacity-50;
+        rounded-full
+        bg-[#f72c5b]
+        hover:bg-[#AB1F3F]
+        px-8
+        py-3
+        text-white
+        shadow-sm
+        cursor-pointer
+        focus-visible:outline-2
+        focus-visible:outline-offset-2
+        focus-visible:outline-red-500
+        disabled:opacity-50;
 		font-size: 1rem;
 		font-weight: 500;
 	}

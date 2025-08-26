@@ -45,7 +45,7 @@ export function findLastEmail({
 
   const checkEmails = async () => {
     while (true) {
-      const emailData = await findEmail({ request, filter })
+      const emailData = await findEmail({request, filter})
 
       if (emailData) {
         return emailData
