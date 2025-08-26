@@ -1,5 +1,5 @@
 import { Avatar, Button, Card, For, Stack } from "@chakra-ui/react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_home/")({
 	component: HomePage,
@@ -14,13 +14,14 @@ function HomePage() {
 						Student information dashboard panel.
 					</h1>
 					<p className="text-lg  text-element-text-regular font-urbanist font-medium">
-						Get an overview of school standards with our open-source dashboard
-						panel.
+						Discover standards based on California's Accountability System.
 					</p>
-					<Button className="tracking-wider" mt={4}>
-						Search for a school or district
+					<Button className="tracking-wider" mt={4} asChild>
+						<Link to="/dashboard">Search for a school or district</Link>
 					</Button>
-					<Button className="tracking-wider">View state-wide</Button>
+					<Button className="tracking-wider" asChild>
+						<Link to="/dashboard">View state-wide</Link>
+					</Button>
 				</div>
 				<div className="flex-1 xl:flex-7/12 ps-8">
 					<img
@@ -35,8 +36,9 @@ function HomePage() {
 				About the data
 			</h2>
 			<p className="mt-8 text-center max-w-lg font-urbanist text-lg">
-				The data is sourced from reports published by the California Department
-				of Education https://www.cde.ca.gov/ds/.
+				We use the standards of California's Accountability System. The
+				data is sourced from reports published by the California Department of
+				Education https://www.cde.ca.gov/ds/.
 			</p>
 			<h2 className="mt-24 text-center text-3xl font-bold text-element-text-regular font-urbanist">
 				Features
