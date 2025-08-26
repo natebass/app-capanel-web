@@ -5,6 +5,7 @@ import MobileButton from "./MobileButton.tsx";
 import SearchBar from "./SearchBar.tsx";
 import SettingsButton from "./SettingsButton";
 import UserAvatar from "./UserAvatar.tsx";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 export default function NavbarD52() {
 	const { user: currentUser } = useAuth();
@@ -14,19 +15,20 @@ export default function NavbarD52() {
 			<nav className="h-full flex items-center max-w-[96rem] mx-auto px-6 gap-2">
 				<div className="flex items-center h-full py-2 text-nowrap">
 					<Link
-						className="pr-4 h-full rounded  gap-[13px]  text-[#0A2D3C] text-3xl flex items-center leading-none font-urbanist"
+						className="pr-4 h-full rounded gap-[13px] text-[#0A2D3C] text-3xl flex items-center leading-none font-urbanist"
 						to="/"
 					>
 						<img src="/assets/logo/logo.svg" alt="Logo" className="h-14" />
-						<span className="">
+						<span className="hidden navbar-search:block">
 							<span className="font-bold">California Accountability</span> Panel
 						</span>
 					</Link>
 					{/* <DistrictSelector /> */}
 				</div>
 				<div className="grow h-full flex items-center justify-end">
-					<SearchBar className="me-8" />
-					<div className="hidden navbar:flex h-full items-center">
+					<SearchBar className="me-8 hidden sm:block" />
+					<FaMagnifyingGlass className="h-6 w-6 me-6 sm:hidden" />
+					<div className="hidden navbar-links:flex h-full items-center">
 						<Link
 							to="/"
 							className="navbar2-link"
@@ -55,7 +57,7 @@ export default function NavbarD52() {
 						)}
 					</div>
 				</div>
-				<div className="navbar:hidden">
+				<div className="navbar-links:hidden">
 					<MobileButton />
 				</div>
 			</nav>

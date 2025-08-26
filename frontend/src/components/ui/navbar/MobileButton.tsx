@@ -25,7 +25,7 @@ export default function MobileButton(className: { className?: string }) {
 						<Menu.Content>
 							<Menu.Item
 								value="home"
-								onSelect={() => navigate({ to: "/home" })}
+								onSelect={() => navigate({ to: "/" })}
 								className="text-[1rem] p-3 tracking-wide"
 							>
 								Home
