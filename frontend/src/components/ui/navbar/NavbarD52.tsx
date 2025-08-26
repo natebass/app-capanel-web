@@ -7,11 +7,13 @@ import SearchBar from "./SearchBar.tsx";
 import SettingsButton from "./SettingsButton";
 import UserAvatar from "./UserAvatar.tsx";
 
-export default function NavbarD52() {
+export default function NavbarD52({ shadow = false }: { shadow?: boolean }) {
 	const { user: currentUser } = useAuth();
 
 	return (
-		<div className="bg-white h-[4.25rem] text-element-text-primary w-full border-b-[#dcdfe6] border-b-1 sticky top-0 z-50">
+		<div
+			className={`bg-white h-[4.25rem] text-element-text-primary w-full sticky top-0 z-50 ${shadow ? "shadow-xl" : "border-b-[#dcdfe6] border-b-1"}`}
+		>
 			<nav className="h-full flex items-center max-w-[96rem] mx-auto px-6 gap-2">
 				<div className="flex items-center h-full py-2 text-nowrap">
 					<Link

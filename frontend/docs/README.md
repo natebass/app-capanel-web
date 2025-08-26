@@ -73,7 +73,7 @@ function ExampleCard() {
 View the implemented dashboard with all card examples at:
 
 - Route: `/_home/dashboard`
-- File: `src/routes/_home/dashboard.tsx`
+- File: `src/routes/_home/index.tsx`
 
 ## Component Location
 
