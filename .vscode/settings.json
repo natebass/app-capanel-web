@@ -33,6 +33,5 @@
 	"editor.codeActionsOnSave": {
 		"source.organizeImports.biome": "explicit"
 	},
-	"explorer.excludeGitIgnore": true,
-	"python-envs.defaultEnvManager": "ms-python.python:system"
+	"explorer.excludeGitIgnore": true
 }
