@@ -22,13 +22,13 @@ jobs:
       db:
         image: postgres:18-alpine
         env:
-          POSTGRES_DB: capanel
-          POSTGRES_USER: capanel
-          POSTGRES_PASSWORD: capanel
+          POSTGRES_DB: blocks
+          POSTGRES_USER: blocks
+          POSTGRES_PASSWORD: blocks
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U capanel -d capanel"
+          --health-cmd "pg_isready -U blocks -d blocks"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 10
@@ -37,7 +37,7 @@ jobs:
       SECRET_KEY: ci-only-not-a-real-secret
       FIRST_SUPERUSER: admin@example.org
       FIRST_SUPERUSER_PASSWORD: ci-only-not-a-real-password
-      DATABASE_URL: postgresql://capanel:capanel@localhost:5432/capanel
+      DATABASE_URL: postgresql://blocks:blocks@localhost:5432/blocks
       RESEARCH_FILE_SOURCE_URI: ./resources
       FASTAPI_ENV: development
     steps:

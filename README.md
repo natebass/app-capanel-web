@@ -3,7 +3,7 @@
 California Dashboard is a dashboard for displaying key school performance metrics. Contributions are welcome!
 
 > [!NOTE]
-> Learn about the project on the [documentation website](https://opensacorg.github.io/app-capanel-doc) (under
+> Learn about the project on the [documentation website](https://opensacorg.github.io/learning-blocks-doc) (under
 > development).
 
 ## Overview
@@ -113,10 +113,10 @@ The dashboard, growth and enrollment importers default to reading from
 The application deploys to a **single AWS EC2 instance running Amazon Linux 2023 and Docker Compose**: PostgreSQL, the
 FastAPI backend, and a Caddy container that terminates TLS, serves the compiled front end and reverse-proxies `/api`. The
 full specification — instance sizing, IAM, Parameter Store, SES, backups and costs — is in
-[the AWS deployment guide](https://github.com/opensacorg/app-capanel-doc/blob/main/backend/docs/source/developer-guide/aws-deployment.md).
+[the AWS deployment guide](https://github.com/opensacorg/learning-blocks-doc/blob/main/backend/docs/source/developer-guide/aws-deployment.md).
 
 **Provisioning.** `bootstrap.sh` runs once per instance, on the instance, as `ec2-user`. It installs Docker and the
-Compose v2 plugin from `dnf`, adds a swap file, and clones the repository into `/opt/capanel`. Copy it up and run it —
+Compose v2 plugin from `dnf`, adds a swap file, and clones the repository into `/opt/blocks`. Copy it up and run it —
 nothing about it runs on your own machine:
 
 ```bash
@@ -132,7 +132,7 @@ means naming it:
 
 ```bash
 ssh -i <key.pem> ec2-user@<instance> \
-  'REPO=https://github.com/<you>/app-capanel-web.git BRANCH=<branch> bash bootstrap.sh'
+  'REPO=https://github.com/<you>/learning-blocks.git BRANCH=<branch> bash bootstrap.sh'
 ```
 
 Log out and back in afterwards to pick up the `docker` group. The AWS CLI that `deploy.sh` needs for Parameter Store is
@@ -148,7 +148,7 @@ vp install && vp run build
 ```
 
 ```bash
-rsync -az --delete frontend/dist/ ec2-user@<instance>:/opt/capanel/dist/
+rsync -az --delete frontend/dist/ ec2-user@<instance>:/opt/blocks/dist/
 ```
 
 Caddy picks up new files immediately, so that is the whole front-end deploy: no rebuild, no restart, no downtime.
@@ -163,7 +163,7 @@ Caddy picks up new files immediately, so that is the whole front-end deploy: no 
 migrations as a one-off task, and restarts:
 
 ```bash
-cd /opt/capanel && ./deploy.sh
+cd /opt/blocks && ./deploy.sh
 ```
 
 With no `SITE_ADDRESS` set it deploys as plain HTTP on port 80 and reads the instance's public DNS name from instance
@@ -171,7 +171,7 @@ metadata, so the site is reachable at `http://ec2-….compute.amazonaws.com/` wi
 Encrypt cannot issue for a name AWS owns, so TLS starts when there is a real hostname to give it:
 
 ```bash
-SITE_ADDRESS=capanel.example.org ./deploy.sh
+SITE_ADDRESS=dashboard.example.org ./deploy.sh
 ```
 
 Run imports as one-off containers rather than through the API's ingest endpoint, so the work gets its own process, exit
@@ -220,4 +220,4 @@ See [SECURITY.md](.github/SECURITY.md) for how to report a vulnerability, or ema
 
 # Other resources
 
-- [Documentation repository](https://github.com/opensacorg/app-capanel-doc)
+- [Documentation repository](https://github.com/opensacorg/learning-blocks-doc)

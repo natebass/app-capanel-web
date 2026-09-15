@@ -5,7 +5,7 @@
 #
 #   scp -i <key.pem> bootstrap.sh ec2-user@<instance>:
 #   ssh -i <key.pem> ec2-user@<instance> \
-#     'REPO=https://github.com/<you>/app-capanel-web.git BRANCH=master bash bootstrap.sh'
+#     'REPO=https://github.com/<you>/learning-blocks.git BRANCH=master bash bootstrap.sh'
 #
 # REPO and BRANCH default to the upstream default branch, so set them when
 # deploying a fork or a branch that has not been merged yet.
@@ -19,8 +19,8 @@
 set -euo pipefail
 
 APP_USER="${APP_USER:-ec2-user}"
-APP_DIR="${APP_DIR:-/opt/capanel}"
-REPO="${REPO:-https://github.com/opensacorg/app-capanel-web.git}"
+APP_DIR="${APP_DIR:-/opt/blocks}"
+REPO="${REPO:-https://github.com/opensacorg/learning-blocks.git}"
 # Empty means the remote's default branch.
 BRANCH="${BRANCH:-}"
 SWAP_SIZE_MB="${SWAP_SIZE_MB:-2048}"
@@ -78,5 +78,5 @@ cat <<'DONE'
 
 Provisioned. Log out and back in to pick up the docker group, then:
 
-    cd /opt/capanel && ./deploy.sh
+    cd /opt/blocks && ./deploy.sh
 DONE

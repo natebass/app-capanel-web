@@ -3,11 +3,11 @@
 # from SSM Parameter Store into .env, then rebuilds and restarts. ./bootstrap.sh
 # installs Docker and clones the repository; this script assumes both are done.
 #
-#   cd /opt/capanel && ./deploy.sh
+#   cd /opt/blocks && ./deploy.sh
 #
 # The front end is deployed separately and does not go through this script:
 #   vp install && vp run build
-#   rsync -az --delete frontend/dist/ ec2-user@<instance>:/opt/capanel/dist/
+#   rsync -az --delete frontend/dist/ ec2-user@<instance>:/opt/blocks/dist/
 set -euo pipefail
 
 REGION="${AWS_REGION:-us-west-2}"
@@ -18,7 +18,7 @@ REGION="${AWS_REGION:-us-west-2}"
 # only change needed.
 SITE_ADDRESS="${SITE_ADDRESS:-:80}"
 FIRST_SUPERUSER="${FIRST_SUPERUSER:-admin@example.org}"
-APP_DIR="${APP_DIR:-/opt/capanel}"
+APP_DIR="${APP_DIR:-/opt/blocks}"
 
 cd "$APP_DIR"
 
@@ -48,16 +48,16 @@ esac
 cat > .env <<ENV
 SITE_ADDRESS=${SITE_ADDRESS}
 PROJECT_NAME=California Dashboard
-POSTGRES_DB=capanel
-POSTGRES_USER=capanel
-POSTGRES_PASSWORD=$(param /capanel/postgres-password)
-SECRET_KEY=$(param /capanel/secret-key)
+POSTGRES_DB=blocks
+POSTGRES_USER=blocks
+POSTGRES_PASSWORD=$(param /blocks/postgres-password)
+SECRET_KEY=$(param /blocks/secret-key)
 FIRST_SUPERUSER=${FIRST_SUPERUSER}
-FIRST_SUPERUSER_PASSWORD=$(param /capanel/first-superuser-password)
+FIRST_SUPERUSER_PASSWORD=$(param /blocks/first-superuser-password)
 FRONTEND_HOST=${PUBLIC_ORIGIN}
 BACKEND_CORS_ORIGINS=${PUBLIC_ORIGIN}
 AWS_REGION=${REGION}
-RESEARCH_FILE_SOURCE_URI=s3://capanel-007361225089-us-west-2-an/resources/california-state
+RESEARCH_FILE_SOURCE_URI=s3://blocks-007361225089-us-west-2-an/resources/california-state
 ENV
 chmod 600 .env
 

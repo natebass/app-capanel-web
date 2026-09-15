@@ -1,9 +1,9 @@
-name: capanel
+name: learning-blocks
 
 # The whole deployment: PostgreSQL, the FastAPI backend, and Caddy serving the
 # compiled front end and reverse-proxying /api. Sized for one t4g.small with
 # 2 GiB of RAM — see backend/docs/source/developer-guide/aws-deployment.md in
-# opensacorg/app-capanel-doc.
+# opensacorg/learning-blocks-doc.
 #
 # Nothing here builds JavaScript. The front end is compiled on your machine or
 # in CI and rsynced into ./dist, which Caddy serves directly.
