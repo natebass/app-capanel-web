@@ -26,6 +26,12 @@ def read_schools(
     Retrieve schools.
     """
     if q:
+        count_statement = (
+            select(func.count())
+            .select_from(School)
+            .where(func.lower(School.school).contains(q.lower()))
+            .where(School.status_type == "Active")
+        )
         statement = (
             select(School)
             .where(func.lower(School.school).contains(q.lower()))
@@ -34,10 +40,11 @@ def read_schools(
             .limit(limit)
         )
     else:
+        count_statement = select(func.count()).select_from(School)
         statement = select(School).offset(skip).limit(limit)
 
+    count = session.exec(count_statement).one()
     schools = session.exec(statement).all()
-    count = len(schools)
 
     return SchoolsPublic(
         data=[SchoolPublic.model_validate(school) for school in schools], count=count
@@ -55,6 +62,12 @@ def read_schools_summary(
     Retrieve schools with a summarized view.
     """
     if q:
+        count_statement = (
+            select(func.count())
+            .select_from(School)
+            .where(func.lower(School.school).contains(q.lower()))
+            .where(School.status_type == "Active")
+        )
         statement = (
             select(School)
             .where(func.lower(School.school).contains(q.lower()))
@@ -63,10 +76,11 @@ def read_schools_summary(
             .limit(limit)
         )
     else:
+        count_statement = select(func.count()).select_from(School)
         statement = select(School).offset(skip).limit(limit)
 
+    count = session.exec(count_statement).one()
     schools = session.exec(statement).all()
-    count = len(schools)
 
     return SchoolsSummary(
         data=[SchoolSummary.model_validate(school) for school in schools], count=count
