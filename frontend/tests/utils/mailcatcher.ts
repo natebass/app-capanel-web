@@ -1,4 +1,5 @@
 import type { APIRequestContext } from '@playwright/test'
+import { setTimeout as sleep } from 'node:timers/promises'
 
 type Email = {
 	id: number
@@ -30,7 +31,16 @@ async function findEmail({
 	return null
 }
 
-export function findLastEmail({
+/**
+ * Poll MailCatcher until a matching message arrives, or give up after
+ * `timeout` milliseconds.
+ *
+ * The deadline is an `AbortSignal.timeout`, which both bounds the loop and
+ * cancels the pending sleep. The previous `Promise.race` against a bare
+ * `setTimeout` left that timer running after a message was found, which kept
+ * the Node process alive for the rest of the timeout.
+ */
+export async function findLastEmail({
 	request,
 	filter,
 	timeout = 5000,
@@ -38,22 +48,22 @@ export function findLastEmail({
 	request: APIRequestContext
 	filter?: (email: Email) => boolean
 	timeout?: number
-}) {
-	const timeoutPromise = new Promise<never>((_, reject) =>
-		setTimeout(() => reject(new Error('Timeout while trying to get latest email')), timeout),
-	)
+}): Promise<Email> {
+	const deadline = AbortSignal.timeout(timeout)
 
-	const checkEmails = async () => {
-		while (true) {
-			const emailData = await findEmail({ request, filter })
+	while (!deadline.aborted) {
+		const emailData = await findEmail({ request, filter })
 
-			if (emailData) {
-				return emailData
-			}
-			// Wait for 100ms before checking again
-			await new Promise((resolve) => setTimeout(resolve, 100))
+		if (emailData) {
+			return emailData
+		}
+
+		try {
+			await sleep(100, undefined, { signal: deadline })
+		} catch {
+			break
 		}
 	}
 
-	return Promise.race([timeoutPromise, checkEmails()])
+	throw new Error('Timeout while trying to get latest email')
 }

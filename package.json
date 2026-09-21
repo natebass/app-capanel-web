@@ -20,8 +20,16 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "11.25.0",
+      "version": "12.5.1",
+      "onFail": "download"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^26.0.0",
       "onFail": "download"
     }
+  },
+  "engines": {
+    "node": ">=26"
   }
 }

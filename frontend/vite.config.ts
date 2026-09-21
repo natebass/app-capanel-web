@@ -1,6 +1,5 @@
 import { copyFileSync, existsSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { fileURLToPath, URL } from 'node:url'
 
 import tailwindcss from '@tailwindcss/vite'
 import { devtools } from '@tanstack/devtools-vite'
@@ -157,7 +156,7 @@ const config = defineConfig(({ command, mode }) => {
 		resolve: {
 			tsconfigPaths: true,
 			alias: {
-				'@': fileURLToPath(new URL('./src', import.meta.url)),
+				'@': resolve(import.meta.dirname, 'src'),
 			},
 		},
 		server: {

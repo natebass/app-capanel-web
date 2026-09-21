@@ -1,16 +1,19 @@
 import { defineConfig, devices } from "@playwright/test";
-import dotenv from "dotenv";
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
+import { existsSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-dotenv.config({ path: path.resolve(__dirname, ".env") });
+/**
+ * Load the repository-root `.env`, the same file `tests/config.ts` reads.
+ *
+ * `process.loadEnvFile` is Node's built-in reader, so nothing here depends on
+ * `dotenv` — which was never a declared dependency of this workspace and only
+ * resolved by hoisting. The file is optional because CI puts these values in
+ * the environment directly, and `loadEnvFile` throws when it is missing.
+ */
+const envFile = path.resolve(import.meta.dirname, "../.env");
+if (existsSync(envFile)) {
+  process.loadEnvFile(envFile);
+}
 
 /**
  * Playwright configuration. See https://app-lbe-doc.vercel.app/testing.
